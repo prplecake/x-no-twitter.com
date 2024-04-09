@@ -23,10 +23,6 @@ export default function Home() {
   useEffect(() => {
     setOrigin(process.env.NODE_ENV === "development" ? "carfatwitter.com" : getOrigin());
   }, []);
-  useEffect(() => {
-    document.title = origin;
-  }, [origin])
-  console.log(origin);
   const this_site = origin
     .replace(/https?:\/\//, "");
   const domain = this_site.replace("twitter.com", "x.com");
