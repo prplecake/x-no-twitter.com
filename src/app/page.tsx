@@ -1,6 +1,6 @@
 "use client";
 import getOrigin from "@/functions/getOrigin";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const title = "Are you serious, X Corp?";
 const description = `Ahoy there, welcome to {this_site}!
@@ -19,10 +19,13 @@ const description = `Ahoy there, welcome to {this_site}!
     "Are you serious, X Corp?"`;
 
 export default function Home() {
-  const origin = process.env.NODE_ENV === "development" ? "carfatwitter.com" : getOrigin();
+  const [origin, setOrigin] = useState("");
+  useEffect(() => {
+    setOrigin(process.env.NODE_ENV === "development" ? "carfatwitter.com" : getOrigin());
+  }, []);
   useEffect(() => {
     document.title = origin;
-  }, [])
+  }, [origin])
   console.log(origin);
   const this_site = origin
     .replace(/https?:\/\//, "");
