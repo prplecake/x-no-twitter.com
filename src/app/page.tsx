@@ -1,6 +1,7 @@
 "use client";
 import getOrigin from "@/functions/getOrigin";
 import {useEffect, useState} from "react";
+import {TrackedLink} from "@/components/fathom";
 
 const title = "Are you serious, X Corp?";
 const description = `Ahoy there, welcome to {this_site}!
@@ -39,10 +40,23 @@ export default function Home() {
               .replace("{domain}", domain)
           }}
         ></p>
-        <p><a href={process.env.REPO_URL} rel="noopener noreferrer">btw this page is open source,
-          prplecake/x-no-twitter.com</a></p>
-        <p><a href={"https://compostintraining.club/@prplecake"} rel={"me"}>by prplecake.</a></p>
-        <p><a href={"https://roblotwitter.com"}>Original page</a> by <a href={"https://sevenc7c.com/"}>Nanashi.</a></p>
+        <p><TrackedLink
+          href={process.env.REPO_URL}
+          event={"repo link clicked"}
+          rel="noopener noreferrer">
+          btw this page is open source, prplecake/x-no-twitter.com
+        </TrackedLink></p>
+        <p><TrackedLink
+          href={"https://compostintraining.club/@prplecake"}
+          event={"fediverse link clicked"}
+          rel={"me"}>by prplecake.</TrackedLink></p>
+        <p><TrackedLink
+          href={"https://roblotwitter.com"}
+          event={"original page link clicked"}
+        >Original page</TrackedLink> by <TrackedLink
+          href={"https://sevenc7c.com/"}
+          event={"original author link clicked"}
+        >Nanashi.</TrackedLink></p>
       </div>
     </main>
   );
